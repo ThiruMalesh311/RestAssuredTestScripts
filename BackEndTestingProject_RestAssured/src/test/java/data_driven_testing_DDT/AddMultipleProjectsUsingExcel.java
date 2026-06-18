@@ -1,16 +1,17 @@
 package data_driven_testing_DDT;
 
+import static io.restassured.RestAssured.*;
+
 import org.hamcrest.Matchers;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.restassured.http.ContentType;
 
-import static io.restassured.RestAssured.*;
-
-public class AddMultipleProjectTest1 {
-
-    @Test(dataProvider = "getData")
+public class AddMultipleProjectsUsingExcel {
+	
+	
+	@Test(dataProvider = "getData")
     public void createProjectTest(String projectName, String status) {
 
         String reqbody = "{\r\n"
@@ -35,19 +36,17 @@ public class AddMultipleProjectTest1 {
     }
 
     @DataProvider
-    public Object[][] getData() {
-
-        Object[][] objr = new Object[3][2];
-
-        objr[0][0] = "Airtel1";
-        objr[0][1] = "Created";
-
-        objr[1][0] = "Airtel2";
-        objr[1][1] = "Created";
-
-        objr[2][0] = "Airtel3";
-        objr[2][1] = "Created";
-
-        return objr;
-    }
-}
+    public Object[][] getData() throws Throwable {
+    	ExcelUtility elib=new ExcelUtility();
+    	int count = elib.getRowCount("Project");
+    	
+         Object[][] objr = new Object[count][2];
+         
+          for(int i=0 ; i<count ;i++) 
+           {
+        	   objr[i][0] = elib.getDataFromExcel("Project", i+1, 0);
+        	   objr[i][1] = elib.getDataFromExcel("Project", i+1, 1);
+          }
+         return objr;
+         }
+  }

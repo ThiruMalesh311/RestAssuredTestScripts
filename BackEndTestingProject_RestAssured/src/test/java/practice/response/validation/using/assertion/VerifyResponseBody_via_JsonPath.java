@@ -18,7 +18,8 @@ public class VerifyResponseBody_via_JsonPath {
 	         
 	         resp.then().log().all();
 	         
-	         //Useing built Method of RestAssured to validate JSON response Body Response Using inbuilt assertion, here we not using testng assertion we are using restAssured  Assertion
+	         //Useing built Method of RestAssured to validate JSON response Body Response Using inbuilt assertion,
+	         // here we not using testng assertion we are using restAssured  Assertion
 	         
 	         //body()=use restassured's (3rd method)using jsonPath and Matchers Class we validating respBody
 	         //1st argument "JsonPath" (2nd argument "using Matchers class methods validate "value")

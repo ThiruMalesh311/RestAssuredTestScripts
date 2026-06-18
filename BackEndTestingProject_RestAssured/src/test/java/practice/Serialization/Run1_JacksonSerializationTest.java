@@ -31,8 +31,9 @@ class Project {  //POJO Class [Plain old java Object ]
 	
 	private String projectName;
 	
-	@JsonProperty(value = "Created By")//in json file it leave space and shows like this
-	private String createdBy;//this is java obj so it not allow to keep spaces but in "created By"i want like this so in json i use @jsonProperty;
+	@JsonProperty(value = "Created By") //in json file it leave space and shows like this
+	private String createdBy;  //this is java obj so it not allow to keep spaces but in "created By"i want like this so in json i use @jsonProperty;
+	
 	private int teamSize;
 	private String status;
 	
@@ -93,7 +94,7 @@ public class Run1_JacksonSerializationTest {
 		//this object mapper must be imported from jackson 
 		ObjectMapper objM=new ObjectMapper();//converting java obj to json
 		
-		objM.writeValue(new File("./project.json"),objM);//entire java object converted into json object serialization/marrsh
+		objM.writeValue(new File("./project.json"),pObj);//entire java object converted into json object serialization/marrsh
 		
 		System.out.println("====END===");
 		
